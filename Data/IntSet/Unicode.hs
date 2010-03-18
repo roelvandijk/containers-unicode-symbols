@@ -1,4 +1,11 @@
-{-# LANGUAGE UnicodeSyntax #-}
+{-# LANGUAGE NoImplicitPrelude, UnicodeSyntax #-}
+
+{-|
+Module     : Data.IntSet.Unicode
+Copyright  : (c) 2009–2010 Roel van Dijk
+License    : BSD3 (see the file LICENSE)
+Maintainer : Roel van Dijk <vandijk.roel@gmail.com>
+-}
 
 module Data.IntSet.Unicode
     ( (∈), (∉)
@@ -8,13 +15,40 @@ module Data.IntSet.Unicode
     , (⊂), (⊃), (⊄), (⊅)
     ) where
 
-import Prelude.Unicode ( (≢), (∧) )
+
+-------------------------------------------------------------------------------
+-- Imports
+-------------------------------------------------------------------------------
+
+-- from base:
+import Data.Bool     ( Bool, not )
+import Data.Function ( flip )
+import Data.Int      ( Int )
+
+-- from base-unicode-symbols:
+import Data.Eq.Unicode   ( (≢) )
+import Data.Bool.Unicode ( (∧) )
+
+-- from containers:
 import Data.IntSet ( IntSet
                    , member, notMember
                    , empty
                    , union, intersection
                    , isSubsetOf, isProperSubsetOf
                    )
+
+
+-------------------------------------------------------------------------------
+-- Fixities
+-------------------------------------------------------------------------------
+
+infix  4 ∈
+infix  4 ∉
+
+
+-------------------------------------------------------------------------------
+-- Symbols
+-------------------------------------------------------------------------------
 
 {- |
 (&#x2208;) = 'member'

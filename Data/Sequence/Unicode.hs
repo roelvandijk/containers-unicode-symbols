@@ -1,4 +1,11 @@
-{-# LANGUAGE UnicodeSyntax #-}
+{-# LANGUAGE NoImplicitPrelude, UnicodeSyntax #-}
+
+{-|
+Module     : Data.Sequence.Unicode
+Copyright  : (c) 2009–2010 Roel van Dijk
+License    : BSD3 (see the file LICENSE)
+Maintainer : Roel van Dijk <vandijk.roel@gmail.com>
+-}
 
 module Data.Sequence.Unicode
     ( (∅)
@@ -6,11 +13,18 @@ module Data.Sequence.Unicode
     , (⋈)
     ) where
 
+
+-------------------------------------------------------------------------------
+-- Imports
+-------------------------------------------------------------------------------
+
+-- from containers:
 import Data.Sequence ( Seq
                      , empty
                      , (<|), (|>)
                      , (><)
                      )
+
 
 -------------------------------------------------------------------------------
 -- Fixities
@@ -19,6 +33,7 @@ import Data.Sequence ( Seq
 infixr 5 ⋈
 infixr 5 ⊲
 infixl 5 ⊳
+
 
 -------------------------------------------------------------------------------
 -- Symbols

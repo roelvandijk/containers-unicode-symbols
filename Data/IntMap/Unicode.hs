@@ -1,4 +1,11 @@
-{-# LANGUAGE UnicodeSyntax #-}
+{-# LANGUAGE NoImplicitPrelude, UnicodeSyntax #-}
+
+{-|
+Module     : Data.IntMap.Unicode
+Copyright  : (c) 2009–2010 Roel van Dijk
+License    : BSD3 (see the file LICENSE)
+Maintainer : Roel van Dijk <vandijk.roel@gmail.com>
+-}
 
 module Data.IntMap.Unicode
     ( (∈), (∉)
@@ -6,11 +13,34 @@ module Data.IntMap.Unicode
     , (∪), (∩)
     ) where
 
+
+-------------------------------------------------------------------------------
+-- Imports
+-------------------------------------------------------------------------------
+
+-- from base:
+import Data.Bool ( Bool  )
+import Data.Int  ( Int )
+
+-- from containers:
 import Data.IntMap ( IntMap
                    , member, notMember
                    , empty
                    , union, intersection
                    )
+
+
+-------------------------------------------------------------------------------
+-- Fixities
+-------------------------------------------------------------------------------
+
+infix  4 ∈
+infix  4 ∉
+
+
+-------------------------------------------------------------------------------
+-- Symbols
+-------------------------------------------------------------------------------
 
 {- |
 (&#x2208;) = 'member'
