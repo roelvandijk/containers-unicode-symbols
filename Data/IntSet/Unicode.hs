@@ -8,7 +8,7 @@ Maintainer : Roel van Dijk <vandijk.roel@gmail.com>
 -}
 
 module Data.IntSet.Unicode
-    ( (∈), (∉)
+    ( (∈), (∋), (∉), (∌)
     , (∅)
     , (∪), (∩)
     , (⊆), (⊇), (⊈), (⊉)
@@ -43,7 +43,9 @@ import Data.IntSet ( IntSet
 -------------------------------------------------------------------------------
 
 infix  4 ∈
+infix  4 ∋
 infix  4 ∉
+infix  4 ∌
 
 
 -------------------------------------------------------------------------------
@@ -59,12 +61,28 @@ U+2208, ELEMENT OF
 (∈) = member
 
 {- |
+(&#x220B;) = 'flip' (&#x2208;)
+
+U+220B, CONTAINS AS MEMBER
+-}
+(∋) ∷ IntSet → Int → Bool
+(∋) = flip (∈)
+
+{- |
 (&#x2209;) = 'notMember'
 
 U+2209, NOT AN ELEMENT OF
 -}
 (∉) ∷ Int -> IntSet → Bool
 (∉) = notMember
+
+{- |
+(&#x220C;) = 'flip' (&#x2209;)
+
+U+220C, DOES NOT CONTAIN AS MEMBER
+-}
+(∌) ∷ IntSet → Int → Bool
+(∌) = flip (∉)
 
 {- |
 (&#x2205;) = 'empty'

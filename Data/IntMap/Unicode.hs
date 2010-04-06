@@ -8,7 +8,7 @@ Maintainer : Roel van Dijk <vandijk.roel@gmail.com>
 -}
 
 module Data.IntMap.Unicode
-    ( (∈), (∉)
+    ( (∈), (∋), (∉), (∌)
     , (∅)
     , (∪), (∩)
     ) where
@@ -19,8 +19,9 @@ module Data.IntMap.Unicode
 -------------------------------------------------------------------------------
 
 -- from base:
-import Data.Bool ( Bool  )
-import Data.Int  ( Int )
+import Data.Bool     ( Bool )
+import Data.Int      ( Int )
+import Data.Function ( flip )
 
 -- from containers:
 import Data.IntMap ( IntMap
@@ -35,7 +36,9 @@ import Data.IntMap ( IntMap
 -------------------------------------------------------------------------------
 
 infix  4 ∈
+infix  4 ∋
 infix  4 ∉
+infix  4 ∌
 
 
 -------------------------------------------------------------------------------
@@ -51,12 +54,28 @@ U+2208, ELEMENT OF
 (∈) = member
 
 {- |
+(&#x220B;) = 'flip' (&#x2208;)
+
+U+220B, CONTAINS AS MEMBER
+-}
+(∋) ∷ IntMap α → Int → Bool
+(∋) = flip (∈)
+
+{- |
 (&#x2209;) = 'notMember'
 
 U+2209, NOT AN ELEMENT OF
 -}
 (∉) ∷ Int → IntMap α → Bool
 (∉) = notMember
+
+{- |
+(&#x220C;) = 'flip' (&#x2209;)
+
+U+220C, DOES NOT CONTAIN AS MEMBER
+-}
+(∌) ∷ IntMap α → Int → Bool
+(∌) = flip (∉)
 
 {- |
 (&#x2205;) = 'empty'
