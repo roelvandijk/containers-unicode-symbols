@@ -39,7 +39,7 @@ infixl 5 ⊳
 -- Symbols
 -------------------------------------------------------------------------------
 
-{- |
+{-|
 (&#x2205;) = 'empty'
 
 U+2205, EMPTY SET
@@ -47,7 +47,7 @@ U+2205, EMPTY SET
 (∅) ∷ Seq α
 (∅) = empty
 
-{- |
+{-|
 (&#x22B2;) = ('<|')
 
 U+22B2, NORMAL SUBGROUP OF
@@ -55,7 +55,7 @@ U+22B2, NORMAL SUBGROUP OF
 (⊲) ∷ α → Seq α → Seq α
 (⊲) = (<|)
 
-{- |
+{-|
 (&#x22B3;) = ('|>')
 
 U+22B3, CONTAINS AS NORMAL SUBGROUP
@@ -63,7 +63,7 @@ U+22B3, CONTAINS AS NORMAL SUBGROUP
 (⊳) ∷ Seq α → α → Seq α
 (⊳) = (|>)
 
-{- |
+{-|
 (&#x22C8;) = ('><')
 
 U+22C8, BOWTIE

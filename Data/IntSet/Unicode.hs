@@ -10,7 +10,7 @@ Maintainer : Roel van Dijk <vandijk.roel@gmail.com>
 module Data.IntSet.Unicode
     ( (∈), (∋), (∉), (∌)
     , (∅)
-    , (∪), (∩)
+    , (∪), (∖), (∆), (∩)
     , (⊆), (⊇), (⊈), (⊉)
     , (⊂), (⊃), (⊄), (⊅)
     ) where
@@ -33,7 +33,7 @@ import Data.Bool.Unicode ( (∧) )
 import Data.IntSet ( IntSet
                    , member, notMember
                    , empty
-                   , union, intersection
+                   , union, difference, intersection
                    , isSubsetOf, isProperSubsetOf
                    )
 
@@ -46,21 +46,33 @@ infix  4 ∈
 infix  4 ∋
 infix  4 ∉
 infix  4 ∌
+infix  4 ⊆
+infix  4 ⊇
+infix  4 ⊈
+infix  4 ⊉
+infix  4 ⊂
+infix  4 ⊃
+infix  4 ⊄
+infix  4 ⊅
+infixl 6 ∪
+infixr 6 ∩
+infixl 9 ∖
+infixl 9 ∆
 
 
 -------------------------------------------------------------------------------
 -- Symbols
 -------------------------------------------------------------------------------
 
-{- |
+{-|
 (&#x2208;) = 'member'
 
 U+2208, ELEMENT OF
 -}
-(∈) ∷ Int -> IntSet → Bool
+(∈) ∷ Int → IntSet → Bool
 (∈) = member
 
-{- |
+{-|
 (&#x220B;) = 'flip' (&#x2208;)
 
 U+220B, CONTAINS AS MEMBER
@@ -68,15 +80,15 @@ U+220B, CONTAINS AS MEMBER
 (∋) ∷ IntSet → Int → Bool
 (∋) = flip (∈)
 
-{- |
+{-|
 (&#x2209;) = 'notMember'
 
 U+2209, NOT AN ELEMENT OF
 -}
-(∉) ∷ Int -> IntSet → Bool
+(∉) ∷ Int → IntSet → Bool
 (∉) = notMember
 
-{- |
+{-|
 (&#x220C;) = 'flip' (&#x2209;)
 
 U+220C, DOES NOT CONTAIN AS MEMBER
@@ -84,7 +96,7 @@ U+220C, DOES NOT CONTAIN AS MEMBER
 (∌) ∷ IntSet → Int → Bool
 (∌) = flip (∉)
 
-{- |
+{-|
 (&#x2205;) = 'empty'
 
 U+2205, EMPTY SET
@@ -92,7 +104,7 @@ U+2205, EMPTY SET
 (∅) ∷ IntSet
 (∅) = empty
 
-{- |
+{-|
 (&#x222A;) = 'union'
 
 U+222A, UNION
@@ -100,7 +112,25 @@ U+222A, UNION
 (∪) ∷ IntSet → IntSet → IntSet
 (∪) = union
 
-{- |
+{-|
+(&#x2216;) = 'difference'
+
+U+2216, SET MINUS
+-}
+(∖) ∷ IntSet → IntSet → IntSet
+(∖) = difference
+
+{-|
+Symmetric difference
+
+a &#x2206; b = (a &#x2216; b) &#x222A; (b &#x2216; a)
+
+U+2206, INCREMENT
+-}
+(∆) ∷ IntSet → IntSet → IntSet
+a ∆ b = (a ∖ b) ∪ (b ∖ a)
+
+{-|
 (&#x2229;) = 'intersection'
 
 U+2229, INTERSECTION
@@ -108,7 +138,7 @@ U+2229, INTERSECTION
 (∩) ∷ IntSet → IntSet → IntSet
 (∩) = intersection
 
-{- |
+{-|
 (&#x2286;) = 'isSubsetOf'
 
 U+2286, SUBSET OF OR EQUAL TO
@@ -116,7 +146,7 @@ U+2286, SUBSET OF OR EQUAL TO
 (⊆) ∷ IntSet → IntSet → Bool
 (⊆) = isSubsetOf
 
-{- |
+{-|
 (&#x2287;) = 'flip' (&#x2286;)
 
 U+2287, SUPERSET OF OR EQUAL TO
@@ -124,23 +154,23 @@ U+2287, SUPERSET OF OR EQUAL TO
 (⊇) ∷ IntSet → IntSet → Bool
 (⊇) = flip (⊆)
 
-{- |
-x &#x2288; y = (x &#x2262; y) &#x2227; (x &#x2284; y)
+{-|
+a &#x2288; b = (a &#x2262; b) &#x2227; (a &#x2284; b)
 
 U+2288, NEITHER A SUBSET OF NOR EQUAL TO
 -}
 (⊈) ∷ IntSet → IntSet → Bool
-x ⊈ y = (x ≢ y) ∧ (x ⊄ y)
+a ⊈ b = (a ≢ b) ∧ (a ⊄ b)
 
-{- |
-x &#x2289; y = (x &#x2262; y) &#x2227; (x &#x2285; y)
+{-|
+a &#x2289; b = (a &#x2262; b) &#x2227; (a &#x2285; b)
 
 U+2289, NEITHER A SUPERSET OF NOR EQUAL TO
 -}
 (⊉) ∷ IntSet → IntSet → Bool
-x ⊉ y = (x ≢ y) ∧ (x ⊅ y)
+a ⊉ b = (a ≢ b) ∧ (a ⊅ b)
 
-{- |
+{-|
 (&#x2282;) = 'isProperSubsetOf'
 
 U+2282, SUBSET OF
@@ -148,7 +178,7 @@ U+2282, SUBSET OF
 (⊂) ∷ IntSet → IntSet → Bool
 (⊂) = isProperSubsetOf
 
-{- |
+{-|
 (&#x2283;) = 'flip' (&#x2282;)
 
 U+2283, SUPERSET OF
@@ -156,18 +186,18 @@ U+2283, SUPERSET OF
 (⊃) ∷ IntSet → IntSet → Bool
 (⊃) = flip (⊂)
 
-{- |
-x &#x2284; y = 'not' (x &#x2282; y)
+{-|
+a &#x2284; b = 'not' (a &#x2282; b)
 
 U+2284, NOT A SUBSET OF
 -}
 (⊄) ∷ IntSet → IntSet → Bool
-x ⊄ y = not (x ⊂ y)
+a ⊄ b = not (a ⊂ b)
 
-{- |
-x &#x2285; y = 'not' (x &#x2283; y)
+{-|
+a &#x2285; b = 'not' (a &#x2283; b)
 
 U+2285, NOT A SUPERSET OF
 -}
 (⊅) ∷ IntSet → IntSet → Bool
-x ⊅ y = not (x ⊃ y)
+a ⊅ b = not (a ⊃ b)
