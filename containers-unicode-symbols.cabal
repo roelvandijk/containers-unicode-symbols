@@ -20,8 +20,8 @@ description:
   completely interchangeable with their definitions.
 
 source-repository head
-  type:     darcs
-  location: http://code.haskell.org/~roelvandijk/code/containers-unicode-symbols
+  type:     git
+  location: git://github.com/roelvandijk/containers-unicode-symbols.git
 
 library
   exposed-modules: Data.IntMap.Unicode
