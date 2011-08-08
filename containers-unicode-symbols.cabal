@@ -1,15 +1,16 @@
 name:          containers-unicode-symbols
-version:       0.3.0.3
+version:       0.3.0.4
 cabal-version: >=1.6
 build-type:    Simple
 stability:     provisional
 author:        Roel van Dijk <vandijk.roel@gmail.com>
 maintainer:    Roel van Dijk <vandijk.roel@gmail.com>
-copyright:     2009–2011 Roel van Dijk <vandijk.roel@gmail.com>
+copyright:     2009—2011 Roel van Dijk <vandijk.roel@gmail.com>
 license:       BSD3
 license-file:  LICENSE
 category:
 homepage:      http://haskell.org/haskellwiki/Unicode-symbols
+bug-reports:   https://github.com/roelvandijk/containers-unicode-symbols/issues
 synopsis:      Unicode alternatives for common functions and operators
 description:
   This package defines new symbols for a number of functions and
@@ -31,7 +32,7 @@ library
                  , Data.Map.Unicode
                  , Data.Sequence.Unicode
                  , Data.Set.Unicode
-  build-depends: base                 >= 3.0.3.1 && < 4.4
+  build-depends: base                 >= 3.0.3.1 && < 4.5
                , base-unicode-symbols >= 0.1.1   && < 0.3
                , containers                         < 0.5
   ghc-options: -Wall
