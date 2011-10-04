@@ -56,6 +56,7 @@ U+2208, ELEMENT OF
 -}
 (∈) ∷ Int → IntMap α → Bool
 (∈) = member
+{-# INLINE (∈) #-}
 
 {-|
 (&#x220B;) = 'flip' (&#x2208;)
@@ -64,6 +65,7 @@ U+220B, CONTAINS AS MEMBER
 -}
 (∋) ∷ IntMap α → Int → Bool
 (∋) = flip (∈)
+{-# INLINE (∋) #-}
 
 {-|
 (&#x2209;) = 'notMember'
@@ -72,6 +74,7 @@ U+2209, NOT AN ELEMENT OF
 -}
 (∉) ∷ Int → IntMap α → Bool
 (∉) = notMember
+{-# INLINE (∉) #-}
 
 {-|
 (&#x220C;) = 'flip' (&#x2209;)
@@ -80,6 +83,7 @@ U+220C, DOES NOT CONTAIN AS MEMBER
 -}
 (∌) ∷ IntMap α → Int → Bool
 (∌) = flip (∉)
+{-# INLINE (∌) #-}
 
 {-|
 (&#x2205;) = 'empty'
@@ -88,6 +92,7 @@ U+2205, EMPTY SET
 -}
 (∅) ∷ IntMap α
 (∅) = empty
+{-# INLINE (∅) #-}
 
 {-|
 (&#x222A;) = 'union'
@@ -96,6 +101,7 @@ U+222A, UNION
 -}
 (∪) ∷ IntMap α → IntMap α → IntMap α
 (∪) = union
+{-# INLINE (∪) #-}
 
 {-|
 (&#x2216;) = 'difference'
@@ -104,6 +110,7 @@ U+2216, SET MINUS
 -}
 (∖) ∷ IntMap α → IntMap β → IntMap α
 (∖) = difference
+{-# INLINE (∖) #-}
 
 {-|
 Symmetric difference
@@ -114,6 +121,7 @@ U+2206, INCREMENT
 -}
 (∆) ∷ IntMap α → IntMap α → IntMap α
 a ∆ b = (a ∖ b) ∪ (b ∖ a)
+{-# INLINE (∆) #-}
 
 {-|
 (&#x2229;) = 'intersection'
@@ -122,4 +130,5 @@ U+2229, INTERSECTION
 -}
 (∩) ∷ IntMap α → IntMap β → IntMap α
 (∩) = intersection
+{-# INLINE (∩) #-}
 

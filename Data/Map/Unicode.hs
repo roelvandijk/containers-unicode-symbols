@@ -56,6 +56,7 @@ U+2208, ELEMENT OF
 -}
 (∈) ∷ Ord k ⇒ k → Map k α → Bool
 (∈) = member
+{-# INLINE (∈) #-}
 
 {-|
 (&#x220B;) = 'flip' (&#x2208;)
@@ -64,6 +65,7 @@ U+220B, CONTAINS AS MEMBER
 -}
 (∋) ∷ Ord k ⇒ Map k α → k → Bool
 (∋) = flip (∈)
+{-# INLINE (∋) #-}
 
 {-|
 (&#x2209;) = 'notMember'
@@ -72,6 +74,7 @@ U+2209, NOT AN ELEMENT OF
 -}
 (∉) ∷ Ord k ⇒ k → Map k α → Bool
 (∉) = notMember
+{-# INLINE (∉) #-}
 
 {-|
 (&#x220C;) = 'flip' (&#x2209;)
@@ -80,6 +83,7 @@ U+220C, DOES NOT CONTAIN AS MEMBER
 -}
 (∌) ∷ Ord k ⇒ Map k α → k → Bool
 (∌) = flip (∉)
+{-# INLINE (∌) #-}
 
 {-|
 (&#x2205;) = 'empty'
@@ -88,6 +92,7 @@ U+2205, EMPTY SET
 -}
 (∅) ∷ Map k α
 (∅) = empty
+{-# INLINE (∅) #-}
 
 {-|
 (&#x222A;) = 'union'
@@ -96,6 +101,7 @@ U+222A, UNION
 -}
 (∪) ∷ Ord k ⇒ Map k α → Map k α → Map k α
 (∪) = union
+{-# INLINE (∪) #-}
 
 {-|
 (&#x2216;) = 'difference'
@@ -104,6 +110,7 @@ U+2216, SET MINUS
 -}
 (∖) ∷ Ord k ⇒ Map k α → Map k β → Map k α
 (∖) = difference
+{-# INLINE (∖) #-}
 
 {-|
 Symmetric difference
@@ -114,6 +121,7 @@ U+2206, INCREMENT
 -}
 (∆) ∷ Ord k ⇒ Map k α → Map k α → Map k α
 a ∆ b = (a ∖ b) ∪ (b ∖ a)
+{-# INLINE (∆) #-}
 
 {-|
 (&#x2229;) = 'intersection'
@@ -122,3 +130,4 @@ U+2229, INTERSECTION
 -}
 (∩) ∷ Ord k ⇒ Map k α → Map k β → Map k α
 (∩) = intersection
+{-# INLINE (∩) #-}

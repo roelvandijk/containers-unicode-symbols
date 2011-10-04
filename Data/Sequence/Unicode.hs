@@ -46,6 +46,7 @@ U+2205, EMPTY SET
 -}
 (∅) ∷ Seq α
 (∅) = empty
+{-# INLINE (∅) #-}
 
 {-|
 (&#x22B2;) = ('<|')
@@ -54,6 +55,7 @@ U+22B2, NORMAL SUBGROUP OF
 -}
 (⊲) ∷ α → Seq α → Seq α
 (⊲) = (<|)
+{-# INLINE (⊲) #-}
 
 {-|
 (&#x22B3;) = ('|>')
@@ -62,6 +64,7 @@ U+22B3, CONTAINS AS NORMAL SUBGROUP
 -}
 (⊳) ∷ Seq α → α → Seq α
 (⊳) = (|>)
+{-# INLINE (⊳) #-}
 
 {-|
 (&#x22C8;) = ('><')
@@ -70,3 +73,4 @@ U+22C8, BOWTIE
 -}
 (⋈) ∷ Seq α → Seq α → Seq α
 (⋈) = (><)
+{-# INLINE (⋈) #-}
