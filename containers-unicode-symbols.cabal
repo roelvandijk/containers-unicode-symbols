@@ -1,5 +1,5 @@
 name:          containers-unicode-symbols
-version:       0.3.0.4
+version:       0.3.0.5
 cabal-version: >=1.6
 build-type:    Simple
 stability:     provisional
