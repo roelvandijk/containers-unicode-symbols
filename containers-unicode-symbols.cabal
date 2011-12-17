@@ -1,5 +1,5 @@
 name:          containers-unicode-symbols
-version:       0.3.0.5
+version:       0.3.0.6
 cabal-version: >=1.6
 build-type:    Simple
 stability:     provisional
@@ -32,7 +32,7 @@ library
                  , Data.Map.Unicode
                  , Data.Sequence.Unicode
                  , Data.Set.Unicode
-  build-depends: base                 >= 3.0.3.1 && < 4.5
+  build-depends: base                 >= 3.0.3.1 && < 4.6
                , base-unicode-symbols >= 0.1.1   && < 0.3
                , containers                         < 0.5
   ghc-options: -Wall
