@@ -1,13 +1,13 @@
 {-# LANGUAGE NoImplicitPrelude, UnicodeSyntax #-}
 
 {-|
-Module     : Data.IntMap.Unicode
+Module     : Data.Map.Lazy.Unicode
 Copyright  : 2009–2012 Roel van Dijk
 License    : BSD3 (see the file LICENSE)
 Maintainer : Roel van Dijk <vandijk.roel@gmail.com>
 -}
 
-module Data.IntMap.Unicode
+module Data.Map.Lazy.Unicode
     ( (∈), (∋), (∉), (∌)
     , (∅)
     , (∪), (∖), (∆), (∩)
@@ -20,15 +20,15 @@ module Data.IntMap.Unicode
 
 -- from base:
 import Data.Bool     ( Bool )
-import Data.Int      ( Int )
+import Data.Ord      ( Ord )
 import Data.Function ( flip )
 
 -- from containers:
-import Data.IntMap ( IntMap
-                   , member, notMember
-                   , empty
-                   , union, difference, intersection
-                   )
+import Data.Map.Lazy ( Map
+                     , member, notMember
+                     , empty
+                     , union, difference, intersection
+                     )
 
 
 -------------------------------------------------------------------------------
@@ -54,7 +54,7 @@ infixl 9 ∆
 
 U+2208, ELEMENT OF
 -}
-(∈) ∷ Int → IntMap α → Bool
+(∈) ∷ Ord k ⇒ k → Map k α → Bool
 (∈) = member
 {-# INLINE (∈) #-}
 
@@ -63,7 +63,7 @@ U+2208, ELEMENT OF
 
 U+220B, CONTAINS AS MEMBER
 -}
-(∋) ∷ IntMap α → Int → Bool
+(∋) ∷ Ord k ⇒ Map k α → k → Bool
 (∋) = flip (∈)
 {-# INLINE (∋) #-}
 
@@ -72,7 +72,7 @@ U+220B, CONTAINS AS MEMBER
 
 U+2209, NOT AN ELEMENT OF
 -}
-(∉) ∷ Int → IntMap α → Bool
+(∉) ∷ Ord k ⇒ k → Map k α → Bool
 (∉) = notMember
 {-# INLINE (∉) #-}
 
@@ -81,7 +81,7 @@ U+2209, NOT AN ELEMENT OF
 
 U+220C, DOES NOT CONTAIN AS MEMBER
 -}
-(∌) ∷ IntMap α → Int → Bool
+(∌) ∷ Ord k ⇒ Map k α → k → Bool
 (∌) = flip (∉)
 {-# INLINE (∌) #-}
 
@@ -90,7 +90,7 @@ U+220C, DOES NOT CONTAIN AS MEMBER
 
 U+2205, EMPTY SET
 -}
-(∅) ∷ IntMap α
+(∅) ∷ Map k α
 (∅) = empty
 {-# INLINE (∅) #-}
 
@@ -99,7 +99,7 @@ U+2205, EMPTY SET
 
 U+222A, UNION
 -}
-(∪) ∷ IntMap α → IntMap α → IntMap α
+(∪) ∷ Ord k ⇒ Map k α → Map k α → Map k α
 (∪) = union
 {-# INLINE (∪) #-}
 
@@ -108,7 +108,7 @@ U+222A, UNION
 
 U+2216, SET MINUS
 -}
-(∖) ∷ IntMap α → IntMap β → IntMap α
+(∖) ∷ Ord k ⇒ Map k α → Map k β → Map k α
 (∖) = difference
 {-# INLINE (∖) #-}
 
@@ -119,7 +119,7 @@ a &#x2206; b = (a &#x2216; b) &#x222A; (b &#x2216; a)
 
 U+2206, INCREMENT
 -}
-(∆) ∷ IntMap α → IntMap α → IntMap α
+(∆) ∷ Ord k ⇒ Map k α → Map k α → Map k α
 a ∆ b = (a ∖ b) ∪ (b ∖ a)
 {-# INLINE (∆) #-}
 
@@ -128,7 +128,6 @@ a ∆ b = (a ∖ b) ∪ (b ∖ a)
 
 U+2229, INTERSECTION
 -}
-(∩) ∷ IntMap α → IntMap β → IntMap α
+(∩) ∷ Ord k ⇒ Map k α → Map k β → Map k α
 (∩) = intersection
 {-# INLINE (∩) #-}
-

@@ -1,13 +1,13 @@
 {-# LANGUAGE NoImplicitPrelude, UnicodeSyntax #-}
 
 {-|
-Module     : Data.IntMap.Unicode
+Module     : Data.IntMap.Lazy.Unicode
 Copyright  : 2009–2012 Roel van Dijk
 License    : BSD3 (see the file LICENSE)
 Maintainer : Roel van Dijk <vandijk.roel@gmail.com>
 -}
 
-module Data.IntMap.Unicode
+module Data.IntMap.Strict.Unicode
     ( (∈), (∋), (∉), (∌)
     , (∅)
     , (∪), (∖), (∆), (∩)
@@ -24,11 +24,11 @@ import Data.Int      ( Int )
 import Data.Function ( flip )
 
 -- from containers:
-import Data.IntMap ( IntMap
-                   , member, notMember
-                   , empty
-                   , union, difference, intersection
-                   )
+import Data.IntMap.Strict ( IntMap
+                          , member, notMember
+                          , empty
+                          , union, difference, intersection
+                          )
 
 
 -------------------------------------------------------------------------------
