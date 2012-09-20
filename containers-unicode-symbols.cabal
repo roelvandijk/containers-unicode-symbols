@@ -26,26 +26,18 @@ source-repository head
   type:     git
   location: git://github.com/roelvandijk/containers-unicode-symbols.git
 
-flag containers-old
-  description: Use a version of containers prior to 0.5
-  default: False
-
 library
   exposed-modules: Data.IntMap.Unicode
+                 , Data.IntMap.Lazy.Unicode
+                 , Data.IntMap.Strict.Unicode
                  , Data.IntSet.Unicode
                  , Data.Map.Unicode
+                 , Data.Map.Lazy.Unicode
+                 , Data.Map.Strict.Unicode
                  , Data.Sequence.Unicode
                  , Data.Set.Unicode
   build-depends: base                 >= 3.0.3.1 && < 5
                , base-unicode-symbols >= 0.1.1   && < 0.3
-
-  if flag(containers-old)
-    build-depends: containers < 0.5
-  else
-    build-depends: containers >= 0.5 && < 0.6
-    exposed-modules: Data.IntMap.Lazy.Unicode
-                   , Data.IntMap.Strict.Unicode
-                   , Data.Map.Lazy.Unicode
-                   , Data.Map.Strict.Unicode
+               , containers           >= 0.5     && < 0.6
 
   ghc-options: -Wall
