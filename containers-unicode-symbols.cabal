@@ -1,11 +1,11 @@
 name:          containers-unicode-symbols
-version:       0.3.1
+version:       0.3.1.1
 cabal-version: >=1.6
 build-type:    Simple
 stability:     provisional
 author:        Roel van Dijk <vandijk.roel@gmail.com>
 maintainer:    Roel van Dijk <vandijk.roel@gmail.com>
-copyright:     2009—2012 Roel van Dijk <vandijk.roel@gmail.com>
+copyright:     2009—2013 Roel van Dijk <vandijk.roel@gmail.com>
 license:       BSD3
 license-file:  LICENSE
 category:
@@ -26,18 +26,27 @@ source-repository head
   type:     git
   location: git://github.com/roelvandijk/containers-unicode-symbols.git
 
+flag containers-old
+  description: Support containers < 0.5
+  default: False
+
 library
   exposed-modules: Data.IntMap.Unicode
-                 , Data.IntMap.Lazy.Unicode
-                 , Data.IntMap.Strict.Unicode
                  , Data.IntSet.Unicode
                  , Data.Map.Unicode
-                 , Data.Map.Lazy.Unicode
-                 , Data.Map.Strict.Unicode
                  , Data.Sequence.Unicode
                  , Data.Set.Unicode
   build-depends: base                 >= 3.0.3.1 && < 5
                , base-unicode-symbols >= 0.1.1   && < 0.3
-               , containers           >= 0.5     && < 0.6
+
+  if flag(containers-old)
+    build-depends: containers >= 0.4 && < 0.5
+    cpp-options: -DCONTAINERS_OLD
+  else
+    build-depends: containers >= 0.5 && < 0.6
+    exposed-modules: Data.IntMap.Lazy.Unicode
+                   , Data.IntMap.Strict.Unicode
+                   , Data.Map.Lazy.Unicode
+                   , Data.Map.Strict.Unicode
 
   ghc-options: -Wall

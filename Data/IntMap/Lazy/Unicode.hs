@@ -1,4 +1,6 @@
-{-# LANGUAGE NoImplicitPrelude, UnicodeSyntax #-}
+{-# LANGUAGE CPP               #-}
+{-# LANGUAGE NoImplicitPrelude #-}
+{-# LANGUAGE UnicodeSyntax     #-}
 
 {-|
 Module     : Data.IntMap.Lazy.Unicode
@@ -24,11 +26,17 @@ import Data.Int      ( Int )
 import Data.Function ( flip )
 
 -- from containers:
-import Data.IntMap.Lazy ( IntMap
-                        , member, notMember
-                        , empty
-                        , union, difference, intersection
-                        )
+#ifdef CONTAINERS_OLD
+#define MODULE Data.IntMap
+#else
+#define MODULE Data.IntMap.Lazy
+#endif
+import MODULE ( IntMap
+              , member, notMember
+              , empty
+              , union, difference, intersection
+              )
+#undef MODULE
 
 
 -------------------------------------------------------------------------------

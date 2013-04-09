@@ -1,4 +1,6 @@
-{-# LANGUAGE NoImplicitPrelude, UnicodeSyntax #-}
+{-# LANGUAGE CPP               #-}
+{-# LANGUAGE NoImplicitPrelude #-}
+{-# LANGUAGE UnicodeSyntax     #-}
 
 {-|
 Module     : Data.Map.Lazy.Unicode
@@ -24,12 +26,17 @@ import Data.Ord      ( Ord )
 import Data.Function ( flip )
 
 -- from containers:
-import Data.Map.Lazy ( Map
-                     , member, notMember
-                     , empty
-                     , union, difference, intersection
-                     )
-
+#ifdef CONTAINERS_OLD
+#define MODULE Data.Map
+#else
+#define MODULE Data.Map.Lazy
+#endif
+import MODULE ( Map
+              , member, notMember
+              , empty
+              , union, difference, intersection
+              )
+#undef MODULE
 
 -------------------------------------------------------------------------------
 -- Fixities
