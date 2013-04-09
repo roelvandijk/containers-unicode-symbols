@@ -8,7 +8,7 @@ Maintainer : Roel van Dijk <vandijk.roel@gmail.com>
 -}
 
 module Data.Map.Unicode
-    ( module Data.Map.Strict.Unicode
+    ( module Data.Map.Lazy.Unicode
     ) where
 
-import Data.Map.Strict.Unicode
+import Data.Map.Lazy.Unicode
