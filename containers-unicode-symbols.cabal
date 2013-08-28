@@ -36,6 +36,8 @@ library
                  , Data.Map.Unicode
                  , Data.Sequence.Unicode
                  , Data.Set.Unicode
+                 , Data.IntMap.Lazy.Unicode
+                 , Data.Map.Lazy.Unicode
   build-depends: base                 >= 3.0.3.1 && < 5
                , base-unicode-symbols >= 0.1.1   && < 0.3
 
@@ -44,9 +46,7 @@ library
     cpp-options: -DCONTAINERS_OLD
   else
     build-depends: containers >= 0.5 && < 0.6
-    exposed-modules: Data.IntMap.Lazy.Unicode
-                   , Data.IntMap.Strict.Unicode
-                   , Data.Map.Lazy.Unicode
+    exposed-modules: Data.IntMap.Strict.Unicode
                    , Data.Map.Strict.Unicode
 
   ghc-options: -Wall
